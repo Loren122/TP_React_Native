@@ -24,15 +24,29 @@ export default function TabOneScreen() {
       <View style={styles.card}>
         <Text style={styles.counter}>{count}</Text>
 
-        <Pressable style={styles.button} onPress={increment}>
+        <Pressable 
+          style={({ pressed}) => [
+            styles.button,
+            pressed && { opacity: 0.7},
+            count >= 10 && { backgroundColor: "gray"},
+          ]} 
+          onPress={increment}
+          disabled={count >= 10}
+        >
           <Text style={styles.buttonText}>+1</Text>
         </Pressable>
 
-        <Pressable style={styles.button} onPress={reset}>
+        <Pressable
+          style={({ pressed }) => [styles.button, pressed && { opacity: 0.7}]}
+          onPress={reset}
+        >
           <Text style={styles.buttonText}>Reset</Text>
         </Pressable>
 
-        <Pressable style={styles.button} onPress={toggleTheme}>
+        <Pressable
+          style={({ pressed}) => [styles.button, pressed && { opacity: 0.7}]}
+          onPress={toggleTheme}
+        >
           <Text style={styles.buttonText}>Toggle</Text>
         </Pressable>
       </View>
